@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    <div id="header">
+        
+    <img src="images.png" width="80px" alt="error">  
+      <div id="headertext">  
+        <h1 > Weather APP</h1>
+      </div>  
+    </div>
+    <br>
+    <br>
+    <form onsubmit="getWeather(); return false">
+        <div id="data">
+        <label for="cityName" > <strong>City Name</strong> &nbsp;</label>
+        <input type="text" id="cityName" name="cityName" required>&nbsp;&nbsp;
+        <button type="submit">submit</button>
+        </div>    
+    </form>
+    <br>
+    <br>
+
+    <h1 id="res"></h1>
+
+    <script>
+        function getWeather(){
+            var cityname=document.querySelector("#cityName").value;
+            axios.get(`https://api.weatherapi.com/v1/current.json?key=702516ec7ab24ef19e494242240302&q=${cityname}&aqi=yes`)
+            
+            .then(function(response) {
+            let weatherData=response.data;
+                console.log(weatherData);    
+                console.log(weatherData.location.name);
+                console.log(weatherData.current.temp_c);
+                
+            let content = `${cityname} Humidity is ${weatherData.current.humidity}<br>`;
+                content += `${cityname} Temperature is ${weatherData.current.temp_c} C <br>`;
+                content += `${cityname} AQI is ${weatherData.current.air_quality.co}<br>`;
+                content += `${cityname} wind is ${weatherData.current.vis_miles} miles <br>`;
+              
+                document.querySelector("#res").innerHTML = content;
+
+            
+             //alert(weatherData.current.gust_kph)
+              //document.querySelector("#res").innerHTML=(weatherData.current/temp_c+"data is here")
+    //end
+
+            })
+            .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+
+}
+    </script>
+<footer id="foot">&copy; Copyright,WD</footer>    
+</body>
+</html>

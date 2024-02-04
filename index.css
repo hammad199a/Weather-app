@@ -1,0 +1,24 @@
+
+#header{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    
+}
+#headertext{
+    text-align: center;
+    color: rgb(242, 199, 118);
+}
+#data{
+    display:flex;
+    align-items: center;
+    padding-left: 40%;
+    margin-top: 2%;
+    margin-left: 20px; 
+}
+#foot{
+    margin-top:100%;
+    background-color:skyblue;
+    color: rgb(10, 6, 6);
+    
+}
